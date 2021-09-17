@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2695DD"
+    tools:context=".BasicProfile">
+
+    <LinearLayout
+        android:id="@+id/linearlayout1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:background="#40C4FF"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome"
+            android:fontFamily="@font/anton"
+            android:textSize="30sp"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearlayout1"
+        android:padding="20dp"
+        >
+
+        <TextView
+            android:id="@+id/profiletextview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BASIC PROFILE"
+            android:textColor="@color/teal_200"
+            android:fontFamily="@font/anton"
+            android:textSize="45sp"
+
+            />
+        <com.google.android.material.card.MaterialCardView
+            android:layout_marginTop="20dp"
+            android:id="@+id/profilecardview"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@id/profiletextview"
+            android:layout_marginLeft="110dp"
+
+            app:cardCornerRadius="100dp"
+            >
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/profilephoto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/profiletextview"
+                android:src="@drawable/profile_photo"
+
+                />
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_below="@+id/profilecardview"
+            style="@style/TextStyles"
+            app:boxStrokeWidth="3dp"
+            android:layout_marginTop="30dp"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Enter your age"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

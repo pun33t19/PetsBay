@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "67625463631",
+    "project_id": "androidprojects-4a617",
+    "storage_bucket": "androidprojects-4a617.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67625463631:android:bd2e095db762fc38445f3a",
+        "android_client_info": {
+          "package_name": "com.app.petsbay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "67625463631-5omlsinvcrcl7ht6p973sioe02itbif9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5q-8bmGFKqgC3Jm1ZRb-aZwO9QVv8w2o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "67625463631-5omlsinvcrcl7ht6p973sioe02itbif9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
