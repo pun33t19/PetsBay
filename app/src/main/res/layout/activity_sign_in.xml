@@ -182,16 +182,30 @@
             app:layout_constraintVertical_bias="0.348" />
 
         <ImageButton
+            android:id="@+id/goggle_sign_in"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@color/white"
-            android:src="@drawable/googleg_standard_color_18"
+            android:src="@mipmap/ic_google_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.277"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/materialTextView"
             app:layout_constraintVertical_bias="0.448" />
+
+        <ImageButton
+            android:id="@+id/facebook_sign_in"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:src="@drawable/ic_icons8_facebook"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView"
+            app:layout_constraintVertical_bias="0.421" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

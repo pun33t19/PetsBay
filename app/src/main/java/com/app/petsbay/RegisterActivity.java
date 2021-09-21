@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,10 +13,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -26,6 +34,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Button registerButton;
     private TextView textView;
     private EditText username;
+    private final String TAG="userdata";
+    private static final String USER_KEY="username";
+    private static final String USER_EMAIL="email";
+    private static final String USER_PASSWORD="password";
+
+    private DocumentReference docRef=FirebaseFirestore.getInstance().document("Basic Details/users");
+    Map<String,Object> userDetails=new HashMap<>();
 
     FirebaseAuth fAuth=FirebaseAuth.getInstance();
 
@@ -61,11 +76,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     }
 
-
-
-
-
-
     @Override
     public void onClick(View v) {
 
@@ -94,10 +104,29 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
 
 
+
+
         fAuth.createUserWithEmailAndPassword(mailId,userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
+                //setting the data in the map object
+                userDetails.put(USER_KEY,userName);
+                userDetails.put(USER_EMAIL,mailId);
+                userDetails.put(USER_PASSWORD,userPassword);
+
                 if (task.isSuccessful()){
+                    docRef.set(userDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Log.d(TAG,"Data dded to the document successfully");
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull  Exception e) {
+                            Log.d(TAG,"Data did not add!",e);
+                        }
+                    });
                     Toast.makeText(RegisterActivity.this, "Successfully registered", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(),MainActivity.class));
 
