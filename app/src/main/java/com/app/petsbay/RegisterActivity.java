@@ -119,7 +119,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     docRef.set(userDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            Log.d(TAG,"Data dded to the document successfully");
+                            Log.d(TAG,"Data added to the document successfully");
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override

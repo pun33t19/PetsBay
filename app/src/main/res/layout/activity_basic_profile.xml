@@ -25,9 +25,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Welcome"
-            android:fontFamily="@font/anton"
-            android:textSize="30sp"
-            android:textColor="@color/black"/>
+            android:fontFamily="@font/bad_script"
+            android:textSize="40sp"
+            android:textColor="#0E0E0E"/>
     </LinearLayout>
 
     <RelativeLayout
@@ -72,6 +72,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/user_age"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_below="@+id/profilecardview"

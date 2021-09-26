@@ -77,6 +77,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    
+
     @Override
     public void onStart() {
         super.onStart();
@@ -87,12 +89,15 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     private void updateUI(FirebaseUser currentUser) {
         if (currentUser!=null){
             startActivity(new Intent(this,MainActivity.class));
+
         }
     }
 
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
+
+
     }
 
     @Override
