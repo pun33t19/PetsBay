@@ -16,9 +16,11 @@
 
     <style name="TextStyles" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="endIconMode">clear_text</item>
-        <item name="boxStrokeColor">@color/teal_200</item>
+        <item name="boxStrokeColor">@color/black</item>
         <item name="hintTextColor">@color/teal_200</item>
-        <item name="android:textColorHint">@color/teal_200</item>
+        <item name="android:textColorHint">@color/black</item>
         <item name="android:textCursorDrawable">@null</item>
     </style>
+
+
 </resources>

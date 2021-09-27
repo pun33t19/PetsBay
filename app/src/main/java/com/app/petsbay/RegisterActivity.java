@@ -128,7 +128,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         }
                     });
                     Toast.makeText(RegisterActivity.this, "Successfully registered", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    startActivity(new Intent(getApplicationContext(),BasicProfile.class));
 
                 }
                 else{

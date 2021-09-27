@@ -7,11 +7,11 @@
     android:background="#92B7F6"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/title"
-        android:layout_marginTop="70dp"/>
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@+id/title"-->
+<!--        android:layout_marginTop="70dp"/>-->
 
 
     <com.google.android.material.textview.MaterialTextView
@@ -20,8 +20,8 @@
         android:layout_height="wrap_content"
         android:text="PetsBay"
         android:fontFamily="@font/anton"
-        android:textColor="@color/teal_200"
-        android:textSize="40sp"
+        android:textColor="#8DECE2"
+        android:textSize="35sp"
         android:layout_marginLeft="150dp"
         />
 
@@ -32,7 +32,7 @@
         android:layout_marginLeft="160dp"
         android:fontFamily="@font/bad_script"
         android:text="-Your Pets, we Provide"
-        android:textSize="20sp"
+        android:textSize="17sp"
         android:textColor="@color/black"/>
 
 

@@ -23,8 +23,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView userDisplaySection;
-    private UserDisplayAdapter userDisplayAdapter;
+//    private RecyclerView userDisplaySection;
+//    private UserDisplayAdapter userDisplayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -88,7 +88,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     private void updateUI(FirebaseUser currentUser) {
         if (currentUser!=null){
-            startActivity(new Intent(this,MainActivity.class));
+            startActivity(new Intent(this,BasicProfile.class));
 
         }
     }
@@ -173,7 +173,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
                     public void onComplete(@NonNull  Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(SignInActivity.this, "Successfully signed in", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(),BasicProfile.class));
 
                         }
                         else{
