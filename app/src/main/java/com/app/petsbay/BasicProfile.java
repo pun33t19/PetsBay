@@ -56,7 +56,7 @@ public class BasicProfile extends AppCompatActivity implements View.OnClickListe
     StorageReference ref=storage.getReference();
     StorageReference imageRef=ref.child("userImages/"+currentUser.getDisplayName());
 
-    DocumentReference docRef= FirebaseFirestore.getInstance().document("Basic Details/users");
+    DocumentReference docRef= FirebaseFirestore.getInstance().document("User Details/user"+currentUser.getUid());
     private Map<String,Object> details=new HashMap<>();
 
     @Override
@@ -66,10 +66,6 @@ public class BasicProfile extends AppCompatActivity implements View.OnClickListe
 
         age=findViewById(R.id.user_age);
         location=findViewById(R.id.location);
-
-
-
-
 
         submitButton=findViewById(R.id.submit_profile);
         welcomeText=findViewById(R.id.welcome_text);
@@ -86,9 +82,12 @@ public class BasicProfile extends AppCompatActivity implements View.OnClickListe
 
                 String userAge=age.getText().toString();
                 String userLocation=location.getText().toString();
+
                 
                 details.put("age",userAge);
                 details.put("location",userLocation);
+                details.put("uniqueId",currentUser.getUid());
+                details.put("UserName",currentUser.getDisplayName());
 
                 docRef.set(details).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

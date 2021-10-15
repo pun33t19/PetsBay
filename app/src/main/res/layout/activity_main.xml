@@ -4,15 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#92B7F6"
-    tools:context=".MainActivity">
+    android:background="#3A81FB"
+    tools:context=".MainActivity"
+   >
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@+id/title"-->
-<!--        android:layout_marginTop="70dp"/>-->
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/slogan"
+
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/nav_graph" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/title"
@@ -21,18 +31,19 @@
         android:text="PetsBay"
         android:fontFamily="@font/anton"
         android:textColor="#8DECE2"
-        android:textSize="35sp"
+        android:textSize="30sp"
         android:layout_marginLeft="150dp"
         />
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/slogan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/title"
         android:layout_marginLeft="160dp"
         android:fontFamily="@font/bad_script"
         android:text="-Your Pets, we Provide"
-        android:textSize="17sp"
+        android:textSize="15sp"
         android:textColor="@color/black"/>
 
 

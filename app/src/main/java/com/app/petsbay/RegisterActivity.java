@@ -19,11 +19,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
@@ -34,15 +36,17 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Button registerButton;
     private TextView textView;
     private EditText username;
+
     private final String TAG="userdata";
     private static final String USER_KEY="username";
     private static final String USER_EMAIL="email";
     private static final String USER_PASSWORD="password";
+    FirebaseAuth fAuth=FirebaseAuth.getInstance();
 
-    private DocumentReference docRef=FirebaseFirestore.getInstance().document("Basic Details/users");
+    private DocumentReference docRef=FirebaseFirestore.getInstance().document(("Basic Details/user_"+ UUID.randomUUID()));
     Map<String,Object> userDetails=new HashMap<>();
 
-    FirebaseAuth fAuth=FirebaseAuth.getInstance();
+
 
 
     @Override
