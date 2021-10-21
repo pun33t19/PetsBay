@@ -3,16 +3,23 @@ package com.app.petsbay;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.SavedStateHandle;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.transition.Slide;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.petsbay.databinding.FragmentIndividualBinding;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -38,8 +45,12 @@ public class IndividualFragment extends Fragment {
     FirebaseStorage storage=FirebaseStorage.getInstance();
     StorageReference imageRefs=storage.getReference();
     String userUid;
+    NavController navController;
     private ArrayList<ModelClass> imageLinks=new ArrayList<>();
     SliderAdapter sliderAdapter;
+
+
+
 
 
     public IndividualFragment() {
@@ -53,7 +64,7 @@ public class IndividualFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        userUid=IndividualFragmentArgs.fromBundle(getArguments()).getId();
+        userUid=getArguments().getString("Url");
         sliderAdapter=new SliderAdapter(getContext(),imageLinks);
 
         imageRefs.child("userImages/"+userUid)
@@ -75,13 +86,20 @@ public class IndividualFragment extends Fragment {
 
 
 
+
     }
+
+
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+
+
         binding = null;
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -109,25 +127,30 @@ public class IndividualFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
+        binding.sellername.setText("UserName:"+getArguments().getString("Name"));
+        binding.locationdetail.setText("location:"+getArguments().getString("location"));
+
+        binding.pettypedetal.setText("Pettype:"+getArguments().getString("pettype"));
+        binding.descriptiondetail.setText("Description:"+getArguments().getString("petDescription"));
 
 
 
-        fStore.document("User Details/user"+userUid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+        binding.adoptbutton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onEvent(@Nullable @org.jetbrains.annotations.Nullable DocumentSnapshot value, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException error) {
-                binding.sellername.setText("UserName: "+value.get("UserName"));
-                binding.locationdetail.setText("Location: "+value.get("location"));
+            public void onClick(View view) {
+
+               Bundle bundle=new Bundle();
+               bundle.putString("username",getArguments().getString("Name"));
+               bundle.putString("location",getArguments().getString("location"));
+               Navigation.findNavController(view).navigate(R.id.thankyouaction,bundle);
 
             }
         });
 
-        fStore.document("Pet Details/user"+userUid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable @org.jetbrains.annotations.Nullable DocumentSnapshot value, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException error) {
-                binding.pettypedetal.setText("Pet Type: "+value.get("pet_type"));
-                binding.descriptiondetail.setText("Description:\n"+value.get("pet_description"));
-            }
-        });
+
+
+
+
 
     }
 }

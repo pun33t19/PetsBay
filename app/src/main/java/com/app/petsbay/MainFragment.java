@@ -5,8 +5,10 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +17,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.app.petsbay.databinding.FragmentMainBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
@@ -40,6 +45,9 @@ public class MainFragment extends Fragment {
     private final List<User> userDetails=new ArrayList<>();
     private UserDisplayAdapter adapter;
     FragmentMainBinding binding;
+    SwipeRefreshLayout swipeRefreshLayout;
+    SellStatus s=new SellStatus();
+
 
     public MainFragment() {
         // Required empty public constructor
@@ -47,21 +55,15 @@ public class MainFragment extends Fragment {
     }
 
 
+
+
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        fStore.collection("User Details")
-//                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onEvent(@Nullable @org.jetbrains.annotations.Nullable QuerySnapshot value, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException error) {
-//                        for (DocumentChange docs:value.getDocumentChanges()){
-//                            if (docs.getType()== DocumentChange.Type.ADDED){
-//                                userDetails.add(docs.getDocument().toObject(User.class));
-//                            }
-//                        }
-//                    }
-//                });
+
 
         fStore.collection("User Details")
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -69,9 +71,14 @@ public class MainFragment extends Fragment {
                     public void onEvent(@Nullable @org.jetbrains.annotations.Nullable QuerySnapshot value, @Nullable @org.jetbrains.annotations.Nullable FirebaseFirestoreException error) {
                         for (DocumentChange docs:value.getDocumentChanges()){
                             if (docs.getType()== DocumentChange.Type.ADDED){
+                                if (docs.getDocument().get("uniqueId").equals(currentUser.getUid())){
+                                    continue;
+                                }
+
+
                                 userDetails.add(docs.getDocument().toObject(User.class));
 
-                                Log.e("PETS",docs.getDocument().toObject(User.class).toString());
+                                Log.e("PETS",docs.getDocument().toObject(User.class).toString()+currentUser.getUid());
                             }
 
                             adapter.notifyDataSetChanged();
@@ -83,21 +90,11 @@ public class MainFragment extends Fragment {
 
 
 
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @Override
+    public void onResume() {
+        super.onResume();
 
 
     }
@@ -114,13 +111,25 @@ public class MainFragment extends Fragment {
 
         binding.recyclerViewUser.setAdapter(adapter);
 
+        binding.swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+
+            }
+        });
+
+
+
 
         return v;
 
     }
 
+
+
+
     @Override
-    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
 
@@ -128,7 +137,9 @@ public class MainFragment extends Fragment {
 
 
 
+
     }
+
 
 
 }

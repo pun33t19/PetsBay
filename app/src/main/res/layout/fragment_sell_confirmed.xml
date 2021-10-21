@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".SellConfirmedFragment"
+    android:background="#3A81FB">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/textview1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/oswald_light"
+            android:textSize="30sp"
+            android:padding="20dp"
+            android:textColor="@color/teal_200"
+            android:text="You have successfully adopted the pet!" />
+
+        <TextView
+            android:id="@+id/textview2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="39dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/oswald_light"
+            android:text="Seller Details:\n\nusername:\nEmail:\nlocation:"
+            android:textColor="@color/black"
+
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Thank You for choosing pets bay!"
+            android:fontFamily="@font/oswald_light"
+            android:textSize="30sp"
+            android:layout_marginTop="60dp"
+            android:textColor="@color/teal_200"
+            android:gravity="center_horizontal"
+            />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="100dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            >
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_marginBottom="0dp"
+                />
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+</FrameLayout>

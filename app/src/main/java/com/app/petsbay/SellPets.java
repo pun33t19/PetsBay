@@ -73,9 +73,9 @@ public class SellPets extends Fragment implements View.OnClickListener {
     StorageReference ref=storage.getReference();
     StorageReference petrefs;
     CustomDialog cd;
-    DocumentReference mdocRef= FirebaseFirestore.getInstance().document("Pet Details/user"+currUser.getUid());
+
     DocumentReference userDocRef=FirebaseFirestore.getInstance().document("User Details/user"+currUser.getUid());
-    //DocumentReference petUrlRef=FirebaseFirestore.getInstance().document("Pet Images/user"+currUser.getUid());
+
     Map<String,Object> petsDescription=new HashMap<>();
     Map<String,Object> petsUrl=new HashMap<>();
 
@@ -202,7 +202,7 @@ public class SellPets extends Fragment implements View.OnClickListener {
            // petsDescription.put(PET_URL,"gs://"+petrefs.getBucket().toString()+petrefs.getPath().toString());
 
             //storing the details in firestore
-            mdocRef.set(petsDescription).addOnSuccessListener(new OnSuccessListener<Void>() {
+            userDocRef.update(petsDescription).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void unused) {
                     Log.d("SellPets", "Details sent!");
@@ -252,7 +252,7 @@ public class SellPets extends Fragment implements View.OnClickListener {
             upload=petrefs.putFile(imageName);
 
 
-            int finalI = i;
+
 
 
 

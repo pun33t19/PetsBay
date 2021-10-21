@@ -2,6 +2,7 @@ package com.app.petsbay;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,8 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -44,7 +47,13 @@ class UserDisplayAdapter extends RecyclerView.Adapter<UserDisplayAdapter.UserDis
     Context context;
     //FirebaseUser currentUser= FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore fStore= FirebaseFirestore.getInstance();
-    String link;
+    String id;
+    int clickedPosition;
+    SellStatus s=new SellStatus();
+
+
+
+
 
     public UserDisplayAdapter(List<User> userNames, Context context){
 
@@ -71,10 +80,7 @@ class UserDisplayAdapter extends RecyclerView.Adapter<UserDisplayAdapter.UserDis
 
 
 
-            if (user.getUniqueId().equals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
-                holder.itemView.setLayoutParams(holder.params);
 
-            else {
                 holder.userInfo.setText(user.UserName);
                 holder.location.setText(user.location);
 
@@ -86,17 +92,32 @@ class UserDisplayAdapter extends RecyclerView.Adapter<UserDisplayAdapter.UserDis
                     @Override
                     public void onClick(View view) {
 
-                        String id = user.uniqueId;
+                         id = user.uniqueId;
 
-                        MainFragmentDirections.SendDetails action = MainFragmentDirections.sendDetails();
-                        action.setId(id);
-                        Navigation.findNavController(view).navigate(action);
+                        s.setUserId(id);
+
+
+
+                        userNames.remove(userNames.get(holder.getAdapterPosition()));
+                        notifyDataSetChanged();
+
+                        Bundle bundle=new Bundle();
+                        bundle.putString("Name",user.getUserName());
+                        bundle.putString("location",user.getLocation());
+                        bundle.putString("pettype",user.getPet_type());
+                        bundle.putString("Url",user.getUniqueId());
+                        bundle.putString("petDescription",user.getPet_description());
+
+                         Navigation.findNavController(view).navigate(R.id.sendDetails,bundle);
 
 
                     }
                 });
 
-            }
+
+
+
+
 
 
     }
@@ -114,13 +135,13 @@ class UserDisplayAdapter extends RecyclerView.Adapter<UserDisplayAdapter.UserDis
         TextView userInfo;
         TextView location;
 
-        ViewGroup.LayoutParams params;
+
 
 
         public UserDisplayViewHolder(@NonNull View itemView) {
             super(itemView);
                 //to initialise and find the different layout elements.
-                params=new FrameLayout.LayoutParams(0,0);
+
 
 
             petImage=itemView.findViewById(R.id.user_pet_image);

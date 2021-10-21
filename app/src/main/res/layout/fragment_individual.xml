@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".IndividualFragment"
-    android:background="#69CCFA">
+    android:background="#3A81FB">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -119,6 +119,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/adoptbutton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Adpot"
