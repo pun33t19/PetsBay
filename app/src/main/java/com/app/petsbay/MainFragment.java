@@ -42,21 +42,16 @@ public class MainFragment extends Fragment {
     FirebaseUser currentUser=fAuth.getCurrentUser();
     FirebaseFirestore fStore=FirebaseFirestore.getInstance();
     DocumentReference docRef=fStore.document("User Details/user"+currentUser.getUid());
-    private final List<User> userDetails=new ArrayList<>();
+    List<User> userDetails=new ArrayList<>();
     private UserDisplayAdapter adapter;
     FragmentMainBinding binding;
-    SwipeRefreshLayout swipeRefreshLayout;
-    SellStatus s=new SellStatus();
+
 
 
     public MainFragment() {
         // Required empty public constructor
         super(R.layout.fragment_main);
     }
-
-
-
-
 
 
     @Override
@@ -88,16 +83,28 @@ public class MainFragment extends Fragment {
                 });
 
 
+        if (new SellStatus().isSold()) {
+
+            adapter.setOnItemClickListener(new UserDisplayAdapter.onItemClickListener() {
+                @Override
+                public void onDeleteClick(int position) {
+                    userDetails.remove(position);
+                    adapter.notifyDataSetChanged();
+                }
+
+            });
+
+            
+
+
+        }
+
+
 
 
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
 
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -111,12 +118,8 @@ public class MainFragment extends Fragment {
 
         binding.recyclerViewUser.setAdapter(adapter);
 
-        binding.swiperefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
 
-            }
-        });
+
 
 
 

@@ -1,17 +1,12 @@
 package com.app.petsbay;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SellStatus {
-    boolean isSold=false;
-    int position;
-    String userId;
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
+    List<User> userNames=new ArrayList<>();
+    static boolean sold=false;
+    int position=0;
 
     public int getPosition() {
         return position;
@@ -22,10 +17,22 @@ public class SellStatus {
     }
 
     public boolean isSold() {
-        return isSold;
+        return sold;
     }
 
     public void setSold(boolean sold) {
-        isSold = sold;
+        this.sold = sold;
+    }
+
+
+
+    public SellStatus(){}
+
+    public SellStatus(List<User> userNames) {
+        this.userNames = userNames;
+    }
+
+    public List<User> getUserNames() {
+        return userNames;
     }
 }

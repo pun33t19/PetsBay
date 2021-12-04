@@ -35,7 +35,7 @@ public class SellConfirmedFragment extends Fragment {
     private FirebaseFirestore fStore = FirebaseFirestore.getInstance();
     String id;
     FragmentSellConfirmedBinding binding;
-    SellStatus s=new SellStatus();
+
 
 
     public SellConfirmedFragment() {
@@ -50,8 +50,7 @@ public class SellConfirmedFragment extends Fragment {
 
 
 
-                SellStatus s=new SellStatus();
-                s.setSold(true);
+
 
     }
 

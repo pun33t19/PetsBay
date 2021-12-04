@@ -3,39 +3,29 @@ package com.app.petsbay;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.SavedStateHandle;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 
-import android.transition.Slide;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.petsbay.databinding.FragmentIndividualBinding;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
-import com.smarteist.autoimageslider.SliderView;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class IndividualFragment extends Fragment {
@@ -48,6 +38,7 @@ public class IndividualFragment extends Fragment {
     NavController navController;
     private ArrayList<ModelClass> imageLinks=new ArrayList<>();
     SliderAdapter sliderAdapter;
+    int position;
 
 
 
@@ -56,6 +47,10 @@ public class IndividualFragment extends Fragment {
     public IndividualFragment() {
         // Required empty public constructor
         super(R.layout.fragment_individual);
+    }
+
+    public IndividualFragment(int position){
+        this.position=position;
     }
 
 
@@ -119,6 +114,8 @@ public class IndividualFragment extends Fragment {
 
 
 
+
+
        return view;
     }
 
@@ -134,10 +131,17 @@ public class IndividualFragment extends Fragment {
         binding.descriptiondetail.setText("Description:"+getArguments().getString("petDescription"));
 
 
-
         binding.adoptbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+               // new UserDisplayAdapter().deleteUser();
+
+                int position=Integer.parseInt(getArguments().getString("position"));
+                SellStatus s=new SellStatus();
+                s.setSold(true);
+                s.setPosition(position);
+
 
                Bundle bundle=new Bundle();
                bundle.putString("username",getArguments().getString("Name"));
